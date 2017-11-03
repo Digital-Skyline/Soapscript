@@ -1,0 +1,13 @@
+function willReturnNull() {
+    return null;
+}
+
+function oneVar(value) {
+    return value;
+}
+
+function calculateArea(radius) {
+    var area = radius * radius;
+    area = area * 3.14;
+    return area;
+}

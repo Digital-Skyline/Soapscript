@@ -1,0 +1,12 @@
+if (10 < 9) {
+    var dumb = 0;
+}
+else {
+    var smart = 1;
+    if (smart == 1) {
+        smart = 100;
+    }
+    else {
+        smart = 0;
+    }
+}
