@@ -52,3 +52,4 @@ target/
 *.project
 Hello.g4
 Java.g4
+/.metadata/
