@@ -1,7 +1,5 @@
 //Subset of Javascript called Soapscript 
 
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar
-
 grammar Soapscript;
 
 
@@ -14,11 +12,11 @@ block   :  stmt_list* 'end';
 
 // Regular exprs that define your language tokens.
 
-ID  :   [a-zA-Z][a-zA-Z0-9]* ;        // match identifiers <label id="code.tour.expr.3"/>
-INT :   [0-9]+ ;                // match integers
+ID  :   [a-zA-Z][a-zA-Z0-9]* ;          // match identifiers <label id="code.tour.expr.3"/>
+INT :   [0-9]+ ;                        // match integers
 FLOAT: [0-9]+.[0-9]+; //kappa
-NEWLINE:'\r'? '\n' -> skip ;            // return newlines to parser (is end-statement signal)
-WS  :   [ \t]+ -> skip ;        // toss out whitespace
+NEWLINE:'\r'? '\n' -> skip ;                    // return newlines to parser (is end-statement signal)
+WS  :   [ \t]+ -> skip ;                // toss out whitespace
 
 
 IF      : 'if' ;
@@ -26,8 +24,8 @@ IF      : 'if' ;
 ELSE    : 'else';
 FOR : 'for'; 
 WHILE : 'while';
-BUBBLE : 'bubble';            //spawn unicorns or something
-CLEAN : 'clean';            // erase bubbles or something
+BUBBLE : 'bubble';                      //spawn unicorns or something
+CLEAN : 'clean';                        // erase bubbles or something
 VAR : 'var';
 
 
@@ -35,11 +33,11 @@ VAR : 'var';
 // exprs with numeric constants and scalar variables. No type checking, no arrays or records yet.
 
 stmt :// stmt   // Stmt
-     if_stmt  // ifStmt
+     if_stmt    // ifStmt
      | for_stmt // forStmt
-     | while_stmt  // whileStmt
+     | while_stmt    // whileStmt
      | bubble_stmt   // bubbleStmt
-     | clean_stmt //cleanStmt
+     | clean_stmt   //cleanStmt
 |assignment
 |   expr
 |';'
@@ -48,11 +46,11 @@ stmt :// stmt   // Stmt
 stmt_list       : stmt (  ';' stmt )* ;
 
 if_stmt     : IF expr stmt ( ELSE stmt ) ;
-for_stmt  : FOR expr;
-while_stmt  : WHILE expr;
+for_stmt    : FOR expr;
+while_stmt  : WHILE expr stmt;
 bubble_stmt : BUBBLE expr;
 clean_stmt  : CLEAN  expr;
-    
+        
 
 
 //identifier ?
@@ -95,13 +93,9 @@ expr
 
 primary
     :   '(' expr ')'
-|INT
-//    |   'this'
-//    |   'super'
-//    |   literal
-      |   ID
-  | FLOAT
-
+    |INT
+    |ID
+    |FLOAT
     ;
 
 
@@ -109,7 +103,7 @@ primary
 
 variable :type_id ID
 | ID ;
-assignment : variable '=' expr;   
+assignment : variable '=' expr;     
 
 //Comments or White Spaces
 COMMENT:   '/*' .*? '*/'    -> channel(HIDDEN); // match anything between /* and */ ;
@@ -133,9 +127,5 @@ var_id       : ID ;
 type_id      : ID ;
 
 variableDeclarator
-    :   ID ('=' expr)?  //changed identifier to ID
-    ;
-
-
-
-
+    :   ID ('=' expr)?; //changed identifier to ID
+    
