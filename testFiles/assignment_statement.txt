@@ -1,4 +1,6 @@
+PROGRAM Hi;
 var y = 10;
 var valueOfPi = 3.14;
-x = 1;
+var x = 1;
 var f = 1337;
+end
