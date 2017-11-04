@@ -1,13 +1,11 @@
 PROGRAM Hi;
-if (10 < 9) (
+if (10 < 9) 
     var dumb = 0;
-})
-else (
+else 
     var smart = 1;
-    if (smart == 1) (
+    if (smart == 1) 
         smart = 100;
-    )
-    else (
+    
+    else 
         smart = 0;
-    )
-}
+end
