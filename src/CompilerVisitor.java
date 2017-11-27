@@ -7,7 +7,7 @@ import wci.util.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 
-public class CompilerVisitor extends PclBaseVisitor<Integer>
+public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
 {
     private SymTabStack symTabStack;
     private SymTabEntry programId;
