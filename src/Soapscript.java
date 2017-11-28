@@ -19,9 +19,9 @@ public class Soapscript
                                 : System.in;
 
         ANTLRInputStream input = new ANTLRInputStream(is);
-        PclLexer lexer = new PclLexer(input);
+        SoapscriptLexer lexer = new SoapscriptLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        PclParser parser = new PclParser(tokens);
+        SoapscriptParser parser = new SoapscriptParser(tokens);
         ParseTree tree = parser.program();
 
         CompilerVisitor compiler = new CompilerVisitor();

@@ -22,7 +22,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitProgram(PclParser.ProgramContext ctx)
+    public Integer visitProgram(SoapscriptParser.ProgramContext ctx)
     {
         System.out.println("Visiting program");
         Integer value = visitChildren(ctx);
@@ -35,7 +35,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitHeader(PclParser.HeaderContext ctx)
+    public Integer visitHeader(SoapscriptParser.HeaderContext ctx)
     {
         String programName = ctx.IDENTIFIER().toString();
         System.out.println("Program name = " + programName);
@@ -49,14 +49,14 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitDecl(PclParser.DeclContext ctx)
+    public Integer visitDecl(SoapscriptParser.DeclContext ctx)
     {
         System.out.println("Visiting dcl");
         return visitChildren(ctx);
     }
 
     @Override
-    public Integer visitVar_list(PclParser.Var_listContext ctx)
+    public Integer visitVar_list(SoapscriptParser.Var_listContext ctx)
     {
         System.out.println("Visiting variable list");
         variableIdList = new ArrayList<SymTabEntry>();
@@ -65,7 +65,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitVar_id(PclParser.Var_idContext ctx)
+    public Integer visitVar_id(SoapscriptParser.Var_idContext ctx)
     {
         String variableName = ctx.IDENTIFIER().toString();
         System.out.println("Declared Id = " + variableName);
@@ -78,7 +78,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitType_id(PclParser.Type_idContext ctx)
+    public Integer visitType_id(SoapscriptParser.Type_idContext ctx)
     {
         String typeName = ctx.IDENTIFIER().toString();
         System.out.println("Type = " + typeName);
