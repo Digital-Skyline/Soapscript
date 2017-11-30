@@ -56,21 +56,6 @@ expr
     |   expr '^' expr
     |   expr '|' expr
     |   expr '?' expr ':' expr
-    |   expr
-        ('^='<assoc=right>
-        |'+='<assoc=right>
-        |'-='<assoc=right>
-        |'*='<assoc=right>
-        |'/='<assoc=right>
-        |'&='<assoc=right>
-        |'|='<assoc=right>
-        |'='<assoc=right>
-        |'>' '>' '='<assoc=right>
-        |'>' '>' '>' '='<assoc=right>
-        |'<' '<' '='<assoc=right>
-        |'%='<assoc=right>
-        )
-        expr
     |';'
     ;
 
