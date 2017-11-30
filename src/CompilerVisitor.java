@@ -37,7 +37,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     @Override
     public Integer visitHeader(SoapscriptParser.HeaderContext ctx)
     {
-        String programName = ctx.IDENTIFIER().toString();
+        String programName = ctx.ID().toString();
         System.out.println("Program name = " + programName);
 
         programId = symTabStack.enterLocal(programName);
@@ -67,7 +67,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     @Override
     public Integer visitVar_id(SoapscriptParser.Var_idContext ctx)
     {
-        String variableName = ctx.IDENTIFIER().toString();
+        String variableName = ctx.ID().toString();
         System.out.println("Declared Id = " + variableName);
 
         SymTabEntry variableId = symTabStack.enterLocal(variableName);
@@ -80,7 +80,7 @@ public class CompilerVisitor extends SoapscriptBaseVisitor<Integer>
     @Override
     public Integer visitType_id(SoapscriptParser.Type_idContext ctx)
     {
-        String typeName = ctx.IDENTIFIER().toString();
+        String typeName = ctx.ID().toString();
         System.out.println("Type = " + typeName);
 
         dataType = typeName.equalsIgnoreCase("integer")
