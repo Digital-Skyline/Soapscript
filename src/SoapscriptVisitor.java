@@ -28,17 +28,17 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlock(SoapscriptParser.BlockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoapscriptParser#stmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStmt(SoapscriptParser.StmtContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SoapscriptParser#stmt_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitStmt_list(SoapscriptParser.Stmt_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStmt(SoapscriptParser.StmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoapscriptParser#if_stmt}.
 	 * @param ctx the parse tree
@@ -70,11 +70,11 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClean_stmt(SoapscriptParser.Clean_stmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoapscriptParser#statementexpr}.
+	 * Visit a parse tree produced by {@link SoapscriptParser#stmt_expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatementexpr(SoapscriptParser.StatementexprContext ctx);
+	T visitStmt_expr(SoapscriptParser.Stmt_exprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
@@ -88,17 +88,17 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrimary(SoapscriptParser.PrimaryContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoapscriptParser#variable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable(SoapscriptParser.VariableContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SoapscriptParser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAssignment(SoapscriptParser.AssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(SoapscriptParser.VariableContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoapscriptParser#declarations}.
 	 * @param ctx the parse tree
@@ -136,9 +136,9 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType_id(SoapscriptParser.Type_idContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoapscriptParser#variableDeclarator}.
+	 * Visit a parse tree produced by {@link SoapscriptParser#var_declarator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariableDeclarator(SoapscriptParser.VariableDeclaratorContext ctx);
+	T visitVar_declarator(SoapscriptParser.Var_declaratorContext ctx);
 }

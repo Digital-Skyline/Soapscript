@@ -37,14 +37,14 @@ public class SoapscriptBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmt(SoapscriptParser.StmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmt_list(SoapscriptParser.Stmt_listContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmt_list(SoapscriptParser.Stmt_listContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmt(SoapscriptParser.StmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -86,7 +86,7 @@ public class SoapscriptBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStatementexpr(SoapscriptParser.StatementexprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmt_expr(SoapscriptParser.Stmt_exprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -107,14 +107,14 @@ public class SoapscriptBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariable(SoapscriptParser.VariableContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAssignment(SoapscriptParser.AssignmentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssignment(SoapscriptParser.AssignmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVariable(SoapscriptParser.VariableContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -163,5 +163,5 @@ public class SoapscriptBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariableDeclarator(SoapscriptParser.VariableDeclaratorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVar_declarator(SoapscriptParser.Var_declaratorContext ctx) { return visitChildren(ctx); }
 }
