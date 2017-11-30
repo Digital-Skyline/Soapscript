@@ -7,18 +7,18 @@ header  : 'PROGRAM' ID ';' ;
 block   :  stmt_list* 'end';
 
 // Regular exprs that define your language tokens.
-ID  :   [a-zA-Z][a-zA-Z0-9]* ;          // match identifiers <label id="code.tour.expr.3"/>
-INT :   [0-9]+ ;                        // match integers
-FLOAT: [0-9]+.[0-9]+;                   //kappa
-NEWLINE:'\r'? '\n' -> skip ;            // return newlines to parser (is end-statement signal)
-WS  :   [ \t]+ -> skip ;                // toss out whitespace
+ID  :   [a-zA-Z][a-zA-Z0-9]* ;
+INT :   [0-9]+ ;
+FLOAT: [0-9]+.[0-9]+;
+NEWLINE:'\r'? '\n' -> skip ;  // return newlines to parser (is end-statement signal)
+WS  :   [ \t]+ -> skip ;  // toss out whitespace
 
 IF      : 'if' ;
 ELSE    : 'else';
 FOR : 'for';
 WHILE : 'while';
-BUBBLE : 'bubble';                      //spawn unicorns or something
-CLEAN : 'clean';                        // erase bubbles or something
+BUBBLE : 'bubble';  //  spawn unicorns or something
+CLEAN : 'clean';    // erase bubbles or something
 VAR : 'var';
 
 // exprs with numeric constants and scalar variables. No type checking, no arrays or records yet.
