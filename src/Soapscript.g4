@@ -6,14 +6,14 @@ block   : stmt_list* 'end';
 
 stmt_list : stmt ( ';' stmt )* ;
 
-stmt : if_stmt
-     | for_stmt
-     | while_stmt
-     | bubble_stmt
-     | clean_stmt
-     | assignment
-     | expr
-     |';' // Do we need this???
+stmt :  if_stmt
+     |  for_stmt
+     |  while_stmt
+     |  bubble_stmt
+     |  clean_stmt
+     |  assignment
+     |  expr
+     |  ';' // Do we need this???
      ;
 
 if_stmt     : IF expr stmt ( ELSE stmt ) ;
@@ -48,8 +48,8 @@ variable    : type_id ID
             | ID ;
 assignment  : variable '=' expr;
 
-COMMENT       : '/*' .*? '*/'    -> channel(HIDDEN); // match anything between /* and */ ;
-LINE_COMMENT  : '//' ~[\r\n]* '\r'? '\n' -> channel(HIDDEN) ;  //everything after in same line
+COMMENT       : '/*' .*? '*/' -> channel(HIDDEN) ;            // comments between /* and */
+LINE_COMMENT  : '//' ~[\r\n]* '\r'? '\n' -> channel(HIDDEN) ; // comments between // and \n
 
 declarations : VAR decl_list ';' ;
 decl_list    : decl ( ';' decl )* ;
@@ -58,7 +58,7 @@ var_list     : var_id ( ',' var_id )* ;
 var_id       : ID ;
 type_id      : ID ;
 
-variableDeclarator  : ID ('=' expr)? ; //changed identifier to ID
+variableDeclarator  : ID ('=' expr)? ;  //changed identifier to ID
 
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
 INT     : [0-9]+ ;
