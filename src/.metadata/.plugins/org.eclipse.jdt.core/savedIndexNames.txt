@@ -1,1 +1,0 @@
-INDEX VERSION 1.130+C:\Users\Jason Liu\Desktop\CS153\HW6\Soapscript\src\.metadata\.plugins\org.eclipse.jdt.core
