@@ -11,56 +11,57 @@ stmt :  if_stmt
      |  while_stmt
      |  bubble_stmt
      |  clean_stmt
-     |  assignment
+     |  assignment_stmt
      |  expr
-     |  ';' // Do we need this???
+     |
      ;
 
-if_stmt     : IF expr stmt ( ELSE stmt ) ;
-for_stmt    : FOR expr ;
-while_stmt  : WHILE expr stmt ;
-bubble_stmt : BUBBLE expr ;
-clean_stmt  : CLEAN  expr ;
-stmt_expr   : expr ;
+assignment_stmt   : assignment '=' expr ;
+if_stmt           : IF expr stmt ( ELSE stmt ) ;
+for_stmt          : FOR for_loop loop ;
+while_stmt        : WHILE expr stmt ;
+bubble_stmt       : BUBBLE expr ;
+clean_stmt        : CLEAN  expr ;
+stmt_expr         : expr ;
 
-expr  :  primary
+loop      : '{' stmt_list '}' ;
+for_loop  : '(' assignment_stmt ';' conditional ';' increment ';' ')' ;
+
+
+expr  :   number
+      |   variable
+      |   conditional
+      |   increment
       |   expr '.' ID
       |   expr '[' expr ']'
-      |   expr ('++' | '--')
-      |   ('+'|'-'|'++'|'--') expr
+      |   ('+'|'-') expr
       |   ('~'|'!') expr
       |   expr ('*'|'/'|'%') expr
       |   expr ('+'|'-') expr
-      |   expr ('<' '=' | '>' '=' | '>' | '<') expr
-      |   expr ('==' | '!=') expr
-      |   expr '&' expr
-      |   expr '^' expr
-      |   expr '|' expr
+      |   '(' expr ')'
       ;
 
-primary : '(' expr ')'
-        | INT
-        | ID
+conditional : expr ('<' '=' | '>' '=' | '>' | '<') expr
+            | expr ('==' | '!=') expr
+            ;
+
+increment   : expr ('++' | '--')
+            | ('++'|'--') expr
+            ;
+
+number  : INTEGER
         | FLOAT
         ;
 
-assignment  : variable '=' expr;
-variable    : type_id ID
-            | ID ;
-
-// This whole section except type_id isn't used.
-declarations : VAR decl_list ';' ;
-decl_list    : decl ( ';' decl )* ;
-decl         : var_list ':' type_id ;
-var_list     : var_id ( ',' var_id )* ;
-var_id       : ID ;
-type_id      : ID ;
-
-var_declarator  : ID ('=' expr)? ; // How is this different from assignment???
+assignment  : 'var' type_id ID
+            | variable
+            ;
+variable    : ID ;
+type_id     : ID ;
 
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
-INT     : [0-9]+ ;
-FLOAT   : [0-9]+.[0-9]+ ;
+INTEGER : [0-9]+ ;
+FLOAT   : [0-9]+ '.' [0-9]+ ;
 
 IF      : 'if' ;
 ELSE    : 'else';
@@ -70,8 +71,8 @@ BUBBLE  : 'bubble';
 CLEAN   : 'clean';
 VAR     : 'var';
 
-NEWLINE : '\r'? '\n' -> skip ;  // return newlines to parser (is end-statement signal)
-WS      : [ \t]+ -> skip ;      // toss out whitespace
+NEWLINE : '\r'? '\n' -> skip ;
+WS      : [ \t]+ -> skip ;
 
-COMMENT       : '/*' .*? '*/' -> channel(HIDDEN) ;            // comments between /* and */
-LINE_COMMENT  : '//' ~[\r\n]* '\r'? '\n' -> channel(HIDDEN) ; // comments between // and \n
+COMMENT       : '/*' .*? '*/' -> channel(HIDDEN) ;
+LINE_COMMENT  : '//' ~[\r\n]* '\r'? '\n' -> channel(HIDDEN) ;
