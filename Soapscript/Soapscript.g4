@@ -10,9 +10,9 @@ stmt  : expr
       | assignment_stmt
       | if_stmt
       | for_stmt
-      | while_stmt
-      | bubble_stmt
-      | clean_stmt
+//      | while_stmt
+//      | bubble_stmt
+//      | clean_stmt
       |
       ;
 
