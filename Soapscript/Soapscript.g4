@@ -6,29 +6,29 @@ block   : stmt_list* 'end';
 
 stmt_list : stmt ( ';' stmt )* ;
 
-stmt :  if_stmt
-     |  for_stmt
-     |  while_stmt
-     |  bubble_stmt
-     |  clean_stmt
-     |  assignment_stmt
-     |  expr
-     |
-     ;
+stmt  : expr
+      | assignment_stmt
+      | if_stmt
+      | for_stmt
+      | while_stmt
+      | bubble_stmt
+      | clean_stmt
+      |
+      ;
 
 assignment_stmt   : assignment '=' expr ;
-if_stmt           : IF expr stmt ( ELSE stmt ) ;
+if_stmt           : IF if_loop loop (0 or 1 ELSE loop ???????????????????);
 for_stmt          : FOR for_loop loop ;
-while_stmt        : WHILE expr stmt ;
-bubble_stmt       : BUBBLE expr ;
-clean_stmt        : CLEAN  expr ;
-stmt_expr         : expr ;
+// while_stmt        : WHILE expr stmt ;
+// bubble_stmt       : BUBBLE expr ;
+// clean_stmt        : CLEAN  expr ;
 
 loop      : '{' stmt_list '}' ;
 for_loop  : '(' assignment_stmt ';' conditional ';' increment ';' ')' ;
-
+if_loop   : '(' conditional ')' ;
 
 expr  :   number
+      |   STRING
       |   variable
       |   conditional
       |   increment
@@ -53,7 +53,7 @@ number  : INTEGER
         | FLOAT
         ;
 
-assignment  : 'var' type_id ID
+assignment  : VAR type_id ID
             | variable
             ;
 variable    : ID ;
@@ -62,6 +62,7 @@ type_id     : ID ;
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER : [0-9]+ ;
 FLOAT   : [0-9]+ '.' [0-9]+ ;
+STRING  : [a-zA-Z0-9]* ;
 
 IF      : 'if' ;
 ELSE    : 'else';
