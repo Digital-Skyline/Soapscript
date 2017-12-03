@@ -17,7 +17,7 @@ stmt  : expr
       ;
 
 assignment_stmt   : assignment '=' expr ;
-if_stmt           : IF if_loop loop (0 or 1 ELSE loop ???????????????????);
+if_stmt           : IF if_loop loop (ELSE loop)?;
 for_stmt          : FOR for_loop loop ;
 // while_stmt        : WHILE expr stmt ;
 // bubble_stmt       : BUBBLE expr ;
