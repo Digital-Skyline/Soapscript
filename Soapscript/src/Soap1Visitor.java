@@ -39,7 +39,7 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 	@Override 
 	public Integer visitHeader(SoapscriptParser.HeaderContext ctx) 
 	{ 
-		String programName = ctx.IDENTIFIER().toString();
+		String programName = ctx.ID().toString();
 
 		programId = symTabStack.enterLocal(programName);
 		programId.setDefinition(DefinitionImpl.PROGRAM);

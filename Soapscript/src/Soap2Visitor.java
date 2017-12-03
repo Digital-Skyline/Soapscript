@@ -28,7 +28,7 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
     }
     
     @Override 
-    public Integer visitMainBlock(SoapscriptParser.MainBlockContext ctx) 
+    public Integer visitBlock(SoapscriptParser.BlockContext ctx) 
     { 
         // Emit the main program header.
         jFile.println();
@@ -67,7 +67,7 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
         return visitChildren(ctx); 
     }
     @Override 
-    public Integer visitAssignmentStmt(SoapscriptParser.AssignmentStmtContext ctx)
+    public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
     {
         Integer value = visit(ctx.expr());
         
@@ -77,7 +77,7 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
         
         // Emit a field put instruction.
         jFile.println("\tputstatic\t" + programName
-                           +  "/" + ctx.variable().IDENTIFIER().toString() 
+                           +  "/" + ctx.variable().ID().toString() 
                            + " " + typeIndicator);
 
         return value; 
