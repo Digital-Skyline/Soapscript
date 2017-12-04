@@ -1,4 +1,4 @@
-grammar Soapscript; // Subset of Javascript
+grammar Soapscript; // Subset of Javascript w/ some minor mods for ease of use!
 
 program : header block ;
 header  : 'PROGRAM' ID ';' ;
@@ -26,7 +26,6 @@ expr  :   number
       |   expr ('==' | '!=') expr
       |   expr ('++' | '--')
       |   expr '.' ID
-      |   expr '[' expr ']'
       |   ('+'|'-') expr
       |   ('~'|'!') expr
       |   expr ('*'|'/'|'%') expr
