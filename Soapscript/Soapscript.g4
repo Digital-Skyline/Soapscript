@@ -14,17 +14,17 @@ stmt  : expr
       ;
 
 assignment_stmt   : assignment '=' expr ;
-if_stmt           : IF if_loop loop (ELSE loop)?;
-for_stmt          : FOR for_loop loop ;
+if_stmt           : 'if' '(' expr? ')' loop ('else' loop)?;
+for_stmt          : 'for' '(' for_loop ')' loop ;
 
 loop      : '{' stmt_list '}' ;
-for_loop  : '(' assignment_stmt ';' conditional ';' increment ';' ')' ;
-if_loop   : '(' conditional ')' ;
+for_loop  : assignment_stmt? ';' expr? ';' expr? ';' ;
 
 expr  :   number
       |   variable
-      |   conditional
-      |   increment
+      |   expr ('<' '=' | '>' '=' | '>' | '<') expr
+      |   expr ('==' | '!=') expr
+      |   expr ('++' | '--')
       |   expr '.' ID
       |   expr '[' expr ']'
       |   ('+'|'-') expr
@@ -34,19 +34,11 @@ expr  :   number
       |   '(' expr ')'
       ;
 
-conditional : expr ('<' '=' | '>' '=' | '>' | '<') expr
-            | expr ('==' | '!=') expr
-            ;
-
-increment   : expr ('++' | '--')
-            | ('++'|'--') expr
-            ;
-
 number  : INTEGER
         | FLOAT
         ;
 
-assignment  : VAR type_id ID
+assignment  : 'var' type_id ID
             | variable
             ;
 variable    : ID ;
@@ -55,12 +47,6 @@ type_id     : ID ;
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER : [0-9]+ ;
 FLOAT   : [0-9]+ '.' [0-9]+ ;
-//STRING  : [a-zA-Z0-9]* ;
-
-IF      : 'if' ;
-ELSE    : 'else';
-FOR     : 'for';
-VAR     : 'var';
 
 NEWLINE : '\r'? '\n' -> skip ;
 WS      : [ \t]+ -> skip ;
