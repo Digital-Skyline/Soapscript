@@ -24,10 +24,10 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 
 	public PrintWriter getAssemblyFile() { return jFile; }
 
-	@Override 
-	public Integer visitProgram(SoapscriptParser.ProgramContext ctx) 
-	{ 
-		Integer value = visitChildren(ctx); 
+	@Override
+	public Integer visitProgram(SoapscriptParser.ProgramContext ctx)
+	{
+		Integer value = visitChildren(ctx);
 
 		// Print the cross-reference table.
 		CrossReferencer crossReferencer = new CrossReferencer();
@@ -36,9 +36,9 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 		return value;
 	}
 
-	@Override 
-	public Integer visitHeader(SoapscriptParser.HeaderContext ctx) 
-	{ 
+	@Override
+	public Integer visitHeader(SoapscriptParser.HeaderContext ctx)
+	{
 		String programName = ctx.ID().toString();
 
 		programId = symTabStack.enterLocal(programName);
@@ -68,9 +68,9 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 	}
 
 	@Override 
-	public Integer visitDeclarations(SoapscriptParser.DeclarationsContext ctx) 
-	{ 
-		Integer value = visitChildren(ctx); 
+	public Integer visitDeclarations(SoapscriptParser.DeclarationsContext ctx)
+	{
+		Integer value = visitChildren(ctx);
 
 		// Emit the class constructor.
 		jFile.println();
@@ -87,22 +87,22 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 		return value;
 	}
 
-	@Override 
-	public Integer visitDecl(SoapscriptParser.DeclContext ctx) 
-	{ 
+	@Override
+	public Integer visitDecl(SoapscriptParser.DeclContext ctx)
+	{
 		jFile.println("\n; " + ctx.getText() + "\n");
-		return visitChildren(ctx); 
+		return visitChildren(ctx);
 	}
 
-	@Override 
-	public Integer visitVarList(SoapscriptParser.VarListContext ctx) 
-	{ 
+	@Override
+	public Integer visitVarList(SoapscriptParser.VarListContext ctx)
+	{
 		variableIdList = new ArrayList<SymTabEntry>();
-		return visitChildren(ctx);         
+		return visitChildren(ctx);
 	}
 
-	@Override 
-	public Integer visitVarId(SoapscriptParser.VarIdContext ctx) 
+	@Override
+	public Integer visitVarId(SoapscriptParser.VarIdContext ctx)
 	{
 		String variableName = ctx.IDENTIFIER().toString();
 
@@ -110,12 +110,12 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 		variableId.setDefinition(VARIABLE);
 		variableIdList.add(variableId);
 
-		return visitChildren(ctx); 
+		return visitChildren(ctx);
 	}
 
-	@Override 
-	public Integer visitTypeId(SoapscriptParser.TypeIdContext ctx) 
-	{ 
+	@Override
+	public Integer visitTypeId(SoapscriptParser.TypeIdContext ctx)
+	{
 		String typeName = ctx.IDENTIFIER().toString();
 
 		TypeSpec type;
@@ -142,10 +142,10 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 					id.getName() + " " + typeIndicator);
 		}
 
-		return visitChildren(ctx); 
+		return visitChildren(ctx);
 	}
 
-	@Override 
+	@Override
 	public Integer visitAddSubExpr(SoapscriptParser.AddSubExprContext ctx)
 	{
 		Integer value = visitChildren(ctx);
@@ -163,10 +163,10 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 						:               null;
 		ctx.type = type;
 
-		return value; 
+		return value;
 	}
 
-	@Override 
+	@Override
 	public Integer visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx)
 	{
 		Integer value = visitChildren(ctx);
@@ -184,20 +184,20 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 						:               null;
 		ctx.type = type;
 
-		return value; 
+		return value;
 	}
 
-	@Override 
+	@Override
 	public Integer visitVariableExpr(SoapscriptParser.VariableExprContext ctx)
 	{
 		String variableName = ctx.variable().IDENTIFIER().toString();
 		SymTabEntry variableId = symTabStack.lookup(variableName);
 
 		ctx.type = variableId.getTypeSpec();
-		return visitChildren(ctx); 
+		return visitChildren(ctx);
 	}
 
-	@Override 
+	@Override
 	public Integer visitSignedNumberExpr(SoapscriptParser.SignedNumberExprContext ctx)
 	{
 		Integer value = visitChildren(ctx);
@@ -205,7 +205,7 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 		return value;
 	}
 
-	@Override 
+	@Override
 	public Integer visitSignedNumber(SoapscriptParser.SignedNumberContext ctx)
 	{
 		Integer value = visit(ctx.number());
@@ -213,7 +213,7 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 		return value;
 	}
 
-	@Override 
+	@Override
 	public Integer visitUnsignedNumberExpr(SoapscriptParser.UnsignedNumberExprContext ctx)
 	{
 		Integer value = visit(ctx.number());
@@ -221,24 +221,24 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 		return value;
 	}
 
-	@Override 
+	@Override
 	public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)
 	{
 		ctx.type = Predefined.integerType;
-		return visitChildren(ctx); 
+		return visitChildren(ctx);
 	}
 
-	@Override 
+	@Override
 	public Integer visitFloatConst(SoapscriptParser.FloatConstContext ctx)
 	{
 		ctx.type = Predefined.realType;
-		return visitChildren(ctx); 
+		return visitChildren(ctx);
 	}
 
-	@Override 
+	@Override
 	public Integer visitParenExpr(SoapscriptParser.ParenExprContext ctx)
 	{
-		Integer value = visitChildren(ctx); 
+		Integer value = visitChildren(ctx);
 		ctx.type = ctx.expr().type;
 		return value;
 	}
