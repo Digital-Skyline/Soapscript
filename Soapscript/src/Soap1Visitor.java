@@ -66,8 +66,60 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer>{
 
 		return visitChildren(ctx);
 	}
+	
+	public Integer visitBlock(SoapscriptParser.BlockContext ctx) {
+		return visitChildren(ctx); 
+	}
+	
+	public Integer visitStmt_list(SoapscriptParser.Stmt_listContext ctx) {
+		return visitChildren(ctx); 
+	}
+	
+	public Integer visitStmt(SoapscriptParser.StmtContext ctx) {
+		return visitChildren(ctx); 
+	}
+	
+	 public Integer visitAssignment_stmt(SoapscriptParser.Assignment_stmtContext ctx) { 
+		 	return visitChildren(ctx);
+	}
+	 
+	public Integer visitIf_stmt(SoapscriptParser.If_stmtContext ctx) { 
+		return visitChildren(ctx); 
+	}
+	
+	public Integer visitFor_stmt(SoapscriptParser.For_stmtContext ctx) { 
+		return visitChildren(ctx); 
+	}
+	
+	public Integer visitLoop(SoapscriptParser.LoopContext ctx) {
+		return visitChildren(ctx); 
+	}
+	
+	public Integer visitFor_loop(SoapscriptParser.For_loopContext ctx) {
+		return visitChildren(ctx); 
+	}
 
-	@Override 
+	public Integer visitExpr(SoapscriptParser.ExprContext ctx) { 
+		return visitChildren(ctx);
+	}
+	
+	 public Integer visitNumber(SoapscriptParser.NumberContext ctx) { 
+		 return visitChildren(ctx); 
+	 }
+	
+	 public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx) {
+		 return visitChildren(ctx); 
+	}
+	
+	 public Integer visitVariable(SoapscriptParser.VariableContext ctx) {
+		 return visitChildren(ctx);
+	 }
+
+	 public Integer visitType_id(SoapscriptParser.Type_idContext ctx) { 
+		 return visitChildren(ctx); 
+	}
+	
+
 	public Integer visitDeclarations(SoapscriptParser.DeclarationsContext ctx)
 	{
 		Integer value = visitChildren(ctx);
