@@ -1,5 +1,0 @@
-PROGRAM h;
-var t = 90;
-while(t > 30)
-	t = 60 + 1;
-end

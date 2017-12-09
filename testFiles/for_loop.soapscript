@@ -1,0 +1,6 @@
+PROGRAM h;
+var integer t = 10;
+for(i = 1; i < 10; i++) {
+	t = 60 + 1;
+}
+end
