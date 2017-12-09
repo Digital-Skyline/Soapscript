@@ -1,5 +1,10 @@
 grammar Soapscript; // Subset of Javascript w/ some minor mods for ease of use!
 
+@header {
+    import wci.intermediate.*;
+    import wci.intermediate.symtabimpl.*;
+}
+
 program : header block ;
 header  : 'PROGRAM' ID ';' ;
 block   : stmt_list 'end';
