@@ -71,7 +71,7 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
     @Override
     public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
     {
-        Integer value = visit(ctx.);
+        Integer value = visit(ctx.expr());
 
         String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
                              : (ctx.expr().type == Predefined.realType)    ? "F"
@@ -84,6 +84,8 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
 
         return value;
     }
+
+  
 
     @Override
     public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)

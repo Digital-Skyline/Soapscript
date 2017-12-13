@@ -960,6 +960,12 @@ public class SoapscriptParser extends Parser {
 		public Type_idContext type_id() {
 			return getRuleContext(Type_idContext.class,0);
 		}
+		public List<AssignmentContext> expr() {
+			return getRuleContexts(AssignmentContext.class);
+		}
+		public AssignmentContext expr(int i) {
+			return getRuleContext(AssignmentContext.class,i);
+		}
 		public TerminalNode ID() { return getToken(SoapscriptParser.ID, 0); }
 		public VariableContext variable() {
 			return getRuleContext(VariableContext.class,0);
