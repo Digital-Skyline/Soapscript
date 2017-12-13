@@ -71,7 +71,7 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
     @Override
     public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
     {
-        Integer value = visit(ctx.expr());
+        Integer value = visit(ctx.);
 
         String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
                              : (ctx.expr().type == Predefined.realType)    ? "F"
@@ -83,23 +83,6 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
                            + " " + typeIndicator);
 
         return value;
-    }
-
-    @Override
-    public Integer visitVariable(SoapscriptParser.VariableExprContext ctx)
-    {
-        String variableName = ctx.variable().ID().toString();
-        TypeSpec type = ctx.type;
-
-        String typeIndicator = (type == Predefined.integerType) ? "I"
-                             : (type == Predefined.realType)    ? "F"
-                             :                                    "?";
-
-        // Emit a field get instruction.
-        jFile.println("\tgetstatic\t" + programName +
-                      "/" + variableName + " " + typeIndicator);
-
-        return visitChildren(ctx);
     }
 
     @Override
