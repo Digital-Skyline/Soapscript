@@ -20,8 +20,8 @@ for_stmt          : 'for' '(' for_loop ')' loop ;
 loop      : '{' stmt_list '}' ;
 for_loop  : assignment_stmt? ';' expr? ';' expr? ';' ;
 
-expr  :   number
-      |   variable
+expr  :   number 
+      |   variable 
       |   expr ('<' '=' | '>' '=' | '>' | '<') expr
       |   expr ('==' | '!=') expr
       |   expr ('++' | '--')
@@ -33,8 +33,8 @@ expr  :   number
       |   '(' expr ')'
       ;
 
-number  : INTEGER
-        | FLOAT
+number  : INTEGER 	#integerConst	
+        | FLOAT		#floatConst
         ;
 
 assignment  : 'var' type_id ID

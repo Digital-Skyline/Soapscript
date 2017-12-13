@@ -76,11 +76,19 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpr(SoapscriptParser.ExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoapscriptParser#number}.
+	 * Visit a parse tree produced by the {@code integerConst}
+	 * labeled alternative in {@link SoapscriptParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumber(SoapscriptParser.NumberContext ctx);
+	T visitIntegerConst(SoapscriptParser.IntegerConstContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code floatConst}
+	 * labeled alternative in {@link SoapscriptParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloatConst(SoapscriptParser.FloatConstContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SoapscriptParser#assignment}.
 	 * @param ctx the parse tree

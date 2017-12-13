@@ -24,6 +24,8 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
   }
 
   public PrintWriter getAssemblyFile() { return jFile;
+  
+  }
 
 	@Override
   public Integer visitProgram(SoapscriptParser.ProgramContext ctx)
