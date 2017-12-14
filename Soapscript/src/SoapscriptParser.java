@@ -273,6 +273,9 @@ public class SoapscriptParser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
+		public VariableContext variable() {
+			return getRuleContext(VariableContext.class,0);
+		}
 		public Assignment_stmtContext assignment_stmt() {
 			return getRuleContext(Assignment_stmtContext.class,0);
 		}
@@ -349,6 +352,9 @@ public class SoapscriptParser extends Parser {
 	public static class Assignment_stmtContext extends ParserRuleContext {
 		public AssignmentContext assignment() {
 			return getRuleContext(AssignmentContext.class,0);
+		}
+		public VariableContext variable() {
+			return getRuleContext(VariableContext.class,0);
 		}
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
@@ -1023,9 +1029,14 @@ public class SoapscriptParser extends Parser {
 	}
 
 	public static class VariableContext extends ParserRuleContext {
+		
+		public TypeSpec type = null;
 		public TerminalNode ID() { return getToken(SoapscriptParser.ID, 0); }
 		public VariableContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
+		}
+		public VariableContext variable() {
+			return getRuleContext(VariableContext.class,0);
 		}
 		@Override public int getRuleIndex() { return RULE_variable; }
 		@Override
