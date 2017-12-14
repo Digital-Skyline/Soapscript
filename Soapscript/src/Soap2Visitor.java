@@ -69,7 +69,7 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
     }
 
     @Override
-    public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
+    public Integer visitAssignment_stmt(SoapscriptParser.Assignment_stmtContext ctx)
     {
         Integer value = visit(ctx.expr());
 
@@ -85,7 +85,13 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
         return value;
     }
 
-  
+    @Override
+    public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
+    {
+		    return null;
+    }
+
+
 
     @Override
     public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)

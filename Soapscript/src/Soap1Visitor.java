@@ -13,7 +13,7 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 
   private SymTabStack symTabStack;
   private SymTabEntry programId;
-  private ArrayList<SymTabEntry> variableIdList;
+//  private ArrayList<SymTabEntry> variableIdList;
   private PrintWriter jFile;
 
   public Soap1Visitor()
