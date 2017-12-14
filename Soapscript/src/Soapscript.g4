@@ -1,5 +1,10 @@
 grammar Soapscript; // Subset of Javascript w/ some minor mods for ease of use!
 
+@header {
+    import wci.intermediate.*;
+    import wci.intermediate.symtabimpl.*;
+}
+
 program : header block ;
 header  : 'PROGRAM' ID ';' ;
 block   : stmt_list 'end';
@@ -20,8 +25,9 @@ for_stmt          : 'for' '(' for_loop ')' loop ;
 loop      : '{' stmt_list '}' ;
 for_loop  : assignment_stmt? ';' expr? ';' expr? ';' ;
 
-expr  :   number 
-      |   variable 
+expr locals [ TypeSpec type = null ]
+      :   number
+      |   variable
       |   expr ('<' '=' | '>' '=' | '>' | '<') expr
       |   expr ('==' | '!=') expr
       |   expr ('++' | '--')
@@ -33,7 +39,8 @@ expr  :   number
       |   '(' expr ')'
       ;
 
-number  : INTEGER 	#integerConst	
+number locals [ TypeSpec type = null ]
+        : INTEGER 	#integerConst
         | FLOAT		#floatConst
         ;
 

@@ -106,13 +106,13 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
   // public Integer visitExpr(SoapscriptParser.ExprContext ctx)
   // { return visitChildren(ctx); }
 
-	@Override
-  public Integer visitNumber(SoapscriptParser.NumberContext ctx)
-  {
-    Integer value = visit(ctx.number());
-    ctx.type = ctx.number().type;
-    return value;
-  }
+//	@Override
+//  public Integer visitNumber(SoapscriptParser.NumberContext ctx)
+//  {
+//    Integer value = visit(ctx.number());
+//    ctx.type = ctx.number().type;
+//    return value;
+//  }
 
   @Override
   public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)

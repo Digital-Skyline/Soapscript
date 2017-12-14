@@ -1,4 +1,8 @@
 // Generated from Soapscript.g4 by ANTLR 4.7
+
+    import wci.intermediate.*;
+    import wci.intermediate.symtabimpl.*;
+
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**

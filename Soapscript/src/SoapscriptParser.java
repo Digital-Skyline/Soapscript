@@ -1,4 +1,8 @@
 // Generated from Soapscript.g4 by ANTLR 4.7
+
+    import wci.intermediate.*;
+    import wci.intermediate.symtabimpl.*;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -621,6 +625,7 @@ public class SoapscriptParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
+		public TypeSpec type = null;
 		public NumberContext number() {
 			return getRuleContext(NumberContext.class,0);
 		}
@@ -889,6 +894,7 @@ public class SoapscriptParser extends Parser {
 	}
 
 	public static class NumberContext extends ParserRuleContext {
+		public TypeSpec type = null;
 		public NumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -897,6 +903,7 @@ public class SoapscriptParser extends Parser {
 		public NumberContext() { }
 		public void copyFrom(NumberContext ctx) {
 			super.copyFrom(ctx);
+			this.type = ctx.type;
 		}
 	}
 	public static class FloatConstContext extends NumberContext {
@@ -959,12 +966,6 @@ public class SoapscriptParser extends Parser {
 	public static class AssignmentContext extends ParserRuleContext {
 		public Type_idContext type_id() {
 			return getRuleContext(Type_idContext.class,0);
-		}
-		public List<AssignmentContext> expr() {
-			return getRuleContexts(AssignmentContext.class);
-		}
-		public AssignmentContext expr(int i) {
-			return getRuleContext(AssignmentContext.class,i);
 		}
 		public TerminalNode ID() { return getToken(SoapscriptParser.ID, 0); }
 		public VariableContext variable() {
