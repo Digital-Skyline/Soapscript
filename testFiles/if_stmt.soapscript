@@ -1,15 +1,9 @@
 PROGRAM Hi;
 
 if (10 < 9) {
-    var integer dumb = 0;
+    var integer numb = 0;
 }
 else {
-    var integer smart = 1;
-    if (smart == 1) {
-        smart = 100;
-    }
-    else {
-        smart = 0;
-    }
+    var integer numbb = 1;
 }
 end

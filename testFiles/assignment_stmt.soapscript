@@ -1,6 +1,6 @@
 PROGRAM Hi;
-var integer y = 10;
-var float valueOfPi = 3.14;
-var integer x = 1;
-var integer f = 1337;
+  var integer y = 10;
+  var float valueOfPi = 3.14;
+  var integer x = 1;
+  var integer f = 1337;
 end
