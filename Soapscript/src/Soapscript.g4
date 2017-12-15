@@ -26,17 +26,17 @@ loop      : '{' stmt_list '}' ;
 for_loop  : assignment_stmt? ';' expr? ';' expr? ';' ;
 
 expr locals [ TypeSpec type = null ]
-      :   number
-      |   variable
-      |   expr ('<' '=' | '>' '=' | '>' | '<') expr
-      |   expr ('==' | '!=') expr
-      |   expr ('++' | '--')
-      |   expr '.' ID
-      |   ('+'|'-') expr
-      |   ('~'|'!') expr
-      |   expr ('*'|'/'|'%') expr
-      |   expr ('+'|'-') expr
-      |   '(' expr ')'
+      :   number							#numberExpr	
+      |   variable							#variableExpr				
+      |   expr ('<' '=' | '>' '=' | '>' | '<') expr		#compExpr
+      |   expr ('==' | '!=') expr			#eqvExpr
+      |   expr ('++' | '--')				#incrExpr
+      |   expr '.' ID						#dotExpr
+      |   ('+'|'-') expr					#addSubExpr
+      |   ('~'|'!') expr					#notExpr
+      |   expr ('*'|'/'|'%') expr			#mulDivExpr
+      |   expr ('+'|'-') expr				#expras
+      |   '(' expr ')'						#paranExpr
       ;
 
 number locals [ TypeSpec type = null ]

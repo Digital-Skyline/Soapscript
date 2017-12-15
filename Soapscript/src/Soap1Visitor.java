@@ -137,10 +137,9 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 	@Override
   public Integer visitVariable(SoapscriptParser.VariableContext ctx)
   {
-    String variableName = ctx.variable().ID().toString();
+    String variableName = ctx.ID().toString();
     SymTabEntry variableId = symTabStack.lookup(variableName);
-
-    ctx.type = variableId.getTypeSpec();
+    //ctx.type = variableId.getTypeSpec();
     return visitChildren(ctx);
   }
 

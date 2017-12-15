@@ -79,16 +79,16 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
 
         // Emit a field put instruction.
         jFile.println("\tputstatic\t" + programName
-                           +  "/" + ctx.variable().ID().toString()
+                           +  "/" + ctx.assignment().ID().toString()
                            + " " + typeIndicator);
-
         return value;
     }
 
     @Override
     public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
     {
-		    return null;
+
+        return null;
     }
 
 

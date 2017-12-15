@@ -74,11 +74,82 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFor_loop(SoapscriptParser.For_loopContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SoapscriptParser#expr}.
+	 * Visit a parse tree produced by the {@code variableExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(SoapscriptParser.ExprContext ctx);
+	T visitVariableExpr(SoapscriptParser.VariableExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code dotExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDotExpr(SoapscriptParser.DotExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code addSubExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddSubExpr(SoapscriptParser.AddSubExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code notExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotExpr(SoapscriptParser.NotExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code eqvExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqvExpr(SoapscriptParser.EqvExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code numberExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumberExpr(SoapscriptParser.NumberExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code compExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompExpr(SoapscriptParser.CompExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code incrExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncrExpr(SoapscriptParser.IncrExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code paranExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParanExpr(SoapscriptParser.ParanExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code mulDivExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expras}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpras(SoapscriptParser.ExprasContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code integerConst}
 	 * labeled alternative in {@link SoapscriptParser#number}.
