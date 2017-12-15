@@ -2,8 +2,8 @@ PROGRAM Hi;
 
 if (10 < 9) {
     var integer numb = 0;
-}
+};
 else {
     var integer numbb = 1;
-}
+};
 end

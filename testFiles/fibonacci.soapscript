@@ -8,14 +8,14 @@ PROGRAM Fibonacci;
 
     if (fib == 0) {
       return a;
-    }
+    };
     for (int i = 2; i <= fib; i++) {
       c = a + b;
       a = b;
       b = c;
-    }
+    };
 
     return b;
-  }
+  };
 
 end
