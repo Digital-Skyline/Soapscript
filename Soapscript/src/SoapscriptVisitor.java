@@ -81,19 +81,19 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableExpr(SoapscriptParser.VariableExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code posNegExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPosNegExpr(SoapscriptParser.PosNegExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code dotExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDotExpr(SoapscriptParser.DotExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code addSubExpr}
-	 * labeled alternative in {@link SoapscriptParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAddSubExpr(SoapscriptParser.AddSubExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code notExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
@@ -102,12 +102,12 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotExpr(SoapscriptParser.NotExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code eqvExpr}
+	 * Visit a parse tree produced by the {@code addSubExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEqvExpr(SoapscriptParser.EqvExprContext ctx);
+	T visitAddSubExpr(SoapscriptParser.AddSubExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
@@ -116,12 +116,12 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumberExpr(SoapscriptParser.NumberExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code compExpr}
+	 * Visit a parse tree produced by the {@code condExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCompExpr(SoapscriptParser.CompExprContext ctx);
+	T visitCondExpr(SoapscriptParser.CondExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code incrExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
@@ -143,13 +143,6 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code expras}
-	 * labeled alternative in {@link SoapscriptParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpras(SoapscriptParser.ExprasContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code integerConst}
 	 * labeled alternative in {@link SoapscriptParser#number}.
@@ -182,4 +175,22 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitType_id(SoapscriptParser.Type_idContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#conditionalOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionalOp(SoapscriptParser.ConditionalOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#addSubOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddSubOp(SoapscriptParser.AddSubOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#mulDivModOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMulDivModOp(SoapscriptParser.MulDivModOpContext ctx);
 }

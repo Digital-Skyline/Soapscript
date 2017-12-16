@@ -28,14 +28,13 @@ for_loop  : assignment_stmt? ';' expr? ';' expr? ';' ;
 expr locals [ TypeSpec type = null ]
       :   number							#numberExpr	
       |   variable							#variableExpr				
-      |   expr ('<' '=' | '>' '=' | '>' | '<') expr		#compExpr
-      |   expr ('==' | '!=') expr			#eqvExpr
+      |   expr conditionalOp expr			#condExpr
       |   expr ('++' | '--')				#incrExpr
       |   expr '.' ID						#dotExpr
-      |   ('+'|'-') expr					#addSubExpr
+      |   ('+'|'-') expr					#posNegExpr
       |   ('~'|'!') expr					#notExpr
-      |   expr ('*'|'/'|'%') expr			#mulDivExpr
-      |   expr ('+'|'-') expr				#expras
+      |   expr mulDivModOp expr				#mulDivExpr
+      |   expr addSubOp expr				#addSubExpr
       |   '(' expr ')'						#paranExpr
       ;
 
@@ -49,10 +48,27 @@ assignment  : 'var' type_id ID
             ;
 variable    : ID ;
 type_id     : ID ;
+conditionalOp : LEOP | GEOP | GTOP | LTOP | ETOP | NEOP;
+addSubOp : ADDOP | SUBOP;
+mulDivModOp : MULOP | DIVOP | MODOP;
 
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER : [0-9]+ ;
 FLOAT   : [0-9]+ '.' [0-9]+ ;
+
+ADDOP : '+';
+SUBOP : '-';
+MULOP : '*';
+DIVOP : '/';
+MODOP : '%';
+LEOP : '<=';
+GEOP : '>=';
+GTOP : '>';
+LTOP : '<'; 
+NEOP : '!=';
+ETOP : '==';
+
+
 
 NEWLINE : '\r'? '\n' -> skip ;
 WS      : [ \t]+ -> skip ;

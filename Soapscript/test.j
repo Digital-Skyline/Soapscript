@@ -35,29 +35,16 @@
 	ldc	2.0
 	putstatic	test/oscarBaboon2 ?
 
-; if(oscarBaboon>oscarBaboon2){oscarBaboon--;}
+; varfloatoscarBaboon3=oscarBaboon+oscarBaboon2
 
+	????
+	putstatic	test/oscarBaboon3 ?
 
-; oscarBaboon--
+; varintblend=apple+orange*orange
 
-
-; 
-
-
-; varintapple=apple+orange
-
-	putstatic	test/apple ?
-
-; for(varinti=0;i<orange;i++;){if(apple>orange){orange++;}}
-
-	ldc	0
-	putstatic	test/i ?
-
-; if(apple>orange){orange++;}
-
-
-; orange++
-
+	f???
+	????
+	putstatic	test/blend ?
 
 ; 
 

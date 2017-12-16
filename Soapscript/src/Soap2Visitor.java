@@ -87,11 +87,105 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
     @Override
     public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
     {
-
+    	
         return null;
     }
 
+    @Override 
+    public Integer visitAddSubExpr(SoapscriptParser.AddSubExprContext ctx) { 
+    	Integer value = visitChildren(ctx);
+        
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
+        
+        boolean integerMode =    (type1 == Predefined.integerType)
+        		&& (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+        		&& (type2 == Predefined.realType);
+        
+        String op = ctx.addSubOp().getText();
+        String opcode;
 
+        if (op.equals("+")) {
+            opcode = integerMode ? "iadd"
+                   : realMode    ? "fadd"
+                   :               "????";
+        }
+        else {
+            opcode = integerMode ? "isub"
+                   : realMode    ? "fsub"
+                   :               "????";
+        }
+        
+        // Emit a multiply or divide instruction.
+        jFile.println("\t" + opcode);
+        
+    	return value; 
+    }
+	
+	@Override 
+	public Integer visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx) {
+		Integer value = visitChildren(ctx);
+        
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
+        
+        boolean integerMode =    (type1 == Predefined.integerType)
+                              && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                              && (type2 == Predefined.realType);
+        
+        String op = ctx.mulDivModOp().getText();
+        String opcode;
+
+        if (op.equals("*")) {
+            opcode = integerMode ? "imul"
+                   : realMode    ? "fmul"
+                   :               "f???";
+        }
+        else if(op.equals("/")){
+            opcode = integerMode ? "idiv"
+                   : realMode    ? "fdiv"
+                   :               "????";
+        }
+        else {
+        	opcode = integerMode ? "imod"
+        			: realMode ? "imod"
+        					: "????";
+        }
+        
+        // Emit a multiply or divide instruction.
+        jFile.println("\t" + opcode);
+        
+        return value;
+	}
+
+	@Override 
+	public Integer visitCondExpr(SoapscriptParser.CondExprContext ctx) { 
+		Integer value = visitChildren(ctx);
+        
+        TypeSpec type1 = ctx.expr(0).type;
+        TypeSpec type2 = ctx.expr(1).type;
+        
+        boolean integerMode =    (type1 == Predefined.integerType)
+        		&& (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+        		&& (type2 == Predefined.realType);
+        String op = ctx.conditionalOp().getText();
+        String opcode;
+        if (op.equals("+")) {
+            opcode = integerMode ? "iadd"
+                   : realMode    ? "fadd"
+                   :               "????";
+        }
+        else {
+            opcode = integerMode ? "isub"
+                   : realMode    ? "fsub"
+                   :               "????";
+        }
+        
+        return value; 
+	}
 
     @Override
     public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)

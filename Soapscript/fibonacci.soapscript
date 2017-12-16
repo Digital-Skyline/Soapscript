@@ -1,0 +1,21 @@
+PROGRAM Fibonacci;
+
+  function main() {
+    var integer fib = 5;
+    var integer a = 0;
+    var integer b = 1;
+    var integer c = 0;
+
+    if (fib == 0) {
+      return a;
+    }
+    for (int i = 2; i <= fib; i++) {
+      c = a + b;
+      a = b;
+      b = c;
+    }
+
+    return b;
+  }
+
+end

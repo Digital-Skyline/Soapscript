@@ -3,13 +3,6 @@ var int apple = 10;
 var int orange = 3; 
 var float oscarBaboon = 1.0;
 var float oscarBaboon2 = 2.0;
-if(oscarBaboon>oscarBaboon2){
-oscarBaboon--;
-};
-var int apple = apple + orange;
-for (var int i =0; i<orange; i++;){
-	if(apple>orange){
-		orange++;
-	}
-}
+var float oscarBaboon3 = oscarBaboon + oscarBaboon2;
+var int blend = apple + orange * orange; 
 end
