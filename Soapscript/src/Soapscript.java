@@ -21,9 +21,6 @@ public class Soapscript {
         SoapscriptParser parser = new SoapscriptParser(tokens);
         ParseTree tree = parser.program();
         
-        //CompilerVisitor compiler = new CompilerVisitor();
-        //compiler.visit(tree);
-        
         Soap1Visitor soap1 = new Soap1Visitor();
         soap1.visit(tree);
         

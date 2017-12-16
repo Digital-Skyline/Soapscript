@@ -3,6 +3,27 @@
 
 .field private static _runTimer LRunTimer;
 .field private static _standardIn LPascalTextIn;
+.field private static apple I
+.field private static apple I
+.field private static orange I
+.field private static apple F
+.field private static orange F
+.field private static oscarBaboon F
+.field private static apple F
+.field private static orange F
+.field private static oscarBaboon F
+.field private static oscarBaboon2 F
+.field private static apple F
+.field private static orange F
+.field private static oscarBaboon F
+.field private static oscarBaboon2 F
+.field private static oscarBaboon3 F
+.field private static apple I
+.field private static orange I
+.field private static oscarBaboon I
+.field private static oscarBaboon2 I
+.field private static oscarBaboon3 I
+.field private static blend I
 
 .method public static main([Ljava/lang/String;)V
 
@@ -37,12 +58,12 @@
 
 ; varfloatoscarBaboon3=oscarBaboon+oscarBaboon2
 
-	????
+	fadd
 	putstatic	test/oscarBaboon3 ?
 
 ; varintblend=apple+orange*orange
 
-	f???
+	imul
 	????
 	putstatic	test/blend ?
 
