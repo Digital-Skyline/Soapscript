@@ -92,25 +92,9 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
         SymTabEntry variableId = symTabStack.enterLocal(variableName);
         variableId.setDefinition(VARIABLE);
         variableIdList.add(variableId);
-		
-        return visitChildren(ctx);
-	}
-
-	@Override
-	public Integer visitVariableExpr(SoapscriptParser.VariableExprContext ctx)
-	{
-		String variableName = ctx.variable().ID().toString();
-		SymTabEntry variableId = symTabStack.lookup(variableName);       
-		ctx.type = variableId.getTypeSpec();
-		return visitChildren(ctx); 
-	}
-
-	@Override
-	public Integer visitType_id(SoapscriptParser.Type_idContext ctx)
-	{
-		String typeName = ctx.ID().toString();
-
-		TypeSpec type;
+        
+        String typeName = ctx.type_id().ID().toString();
+        TypeSpec type;
 		String   typeIndicator;
 
 		if (typeName.equalsIgnoreCase("int")) {
@@ -125,15 +109,20 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 			type = null;
 			typeIndicator = "?";
 		}
+		variableId.setTypeSpec(type);
+		jFile.println(".field private static " +
+				variableName + " " + typeIndicator);
 		
-		for (SymTabEntry id : variableIdList) {
-			id.setTypeSpec(type);
-
-			// Emit a field declaration.
-			jFile.println(".field private static " +
-					id.getName() + " " + typeIndicator);
-		}
-
-		return visitChildren(ctx);
+        return visitChildren(ctx);
 	}
+
+	@Override
+	public Integer visitVariableExpr(SoapscriptParser.VariableExprContext ctx)
+	{
+		String variableName = ctx.variable().ID().toString();
+		SymTabEntry variableId = symTabStack.lookup(variableName);       
+		ctx.type = variableId.getTypeSpec();
+		return visitChildren(ctx); 
+	}
+
 }
