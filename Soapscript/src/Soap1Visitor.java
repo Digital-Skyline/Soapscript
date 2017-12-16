@@ -72,29 +72,15 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 	}
 
 	@Override
-	public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)
-	{
-		ctx.type = Predefined.integerType;
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Integer visitFloatConst(SoapscriptParser.FloatConstContext ctx)
-	{
-		ctx.type = Predefined.realType;
-		return visitChildren(ctx);
-	}
-
-	@Override
 	public Integer visitAssignment(SoapscriptParser.AssignmentContext ctx)
 	{
 		String variableName = ctx.ID().toString();       
-        SymTabEntry variableId = symTabStack.enterLocal(variableName);
-        variableId.setDefinition(VARIABLE);
-        variableIdList.add(variableId);
-        
-        String typeName = ctx.type_id().ID().toString();
-        TypeSpec type;
+		SymTabEntry variableId = symTabStack.enterLocal(variableName);
+		variableId.setDefinition(VARIABLE);
+		variableIdList.add(variableId);
+
+		String typeName = ctx.type_id().ID().toString();
+		TypeSpec type;
 		String   typeIndicator;
 
 		if (typeName.equalsIgnoreCase("int")) {
@@ -112,8 +98,8 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 		variableId.setTypeSpec(type);
 		jFile.println(".field private static " +
 				variableName + " " + typeIndicator);
-		
-        return visitChildren(ctx);
+
+		return visitChildren(ctx);
 	}
 
 	@Override
@@ -125,4 +111,49 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 		return visitChildren(ctx); 
 	}
 
+	@Override 
+	public Integer visitParenExpr(SoapscriptParser.ParenExprContext ctx)
+	{
+		Integer value = visitChildren(ctx); 
+		ctx.type = ctx.expr().type;
+		return value;
+	}
+	
+	@Override
+	public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)
+	{
+		ctx.type = Predefined.integerType;
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Integer visitFloatConst(SoapscriptParser.FloatConstContext ctx)
+	{
+		ctx.type = Predefined.realType;
+		return visitChildren(ctx);
+	}
+	
+	/**
+	@Override public Integer visitPrintStmt(SoapscriptParser.PrintStmtContext ctx) {
+		jFile.println("getstatic    java/lang/System/out Ljava/io/PrintStream;");
+		jFile.println("ldc          "+ctx.ID().toString());
+		jFile.println("iconst_2");
+		jFile.println("anewarray    java/lang/Object");
+		jFile.println("dup");
+		jFile.println("iconst_0");
+		jFile.println("getstatic     FormatTest/n I ");
+		jFile.println("invokestatic  java/lang/Integer.valueOf(I)Ljava/lang/Integer;");
+		jFile.println("aastore");
+		jFile.println("dup");
+		jFile.println("iconst_1");
+		jFile.println("getstatic     FormatTest/root F");
+		jFile.println("invokestatic  java/lang/Float.valueOf(F)Ljava/lang/Float;");
+		jFile.println("aastore");
+		jFile.println("invokestatic  java/lang/String.format(Ljava/lang/String;[Ljava/lang/Object;)"
+				+ "Ljava/lang/String;");
+		jFile.println("invokevirtual java/io/PrintStream.print(Ljava/lang/String;)V");
+
+		return visitChildren(ctx); 
+	}
+*/
 }

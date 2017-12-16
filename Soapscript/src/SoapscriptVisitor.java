@@ -130,19 +130,19 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIncrExpr(SoapscriptParser.IncrExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code paranExpr}
-	 * labeled alternative in {@link SoapscriptParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParanExpr(SoapscriptParser.ParanExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code mulDivExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code parenExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParenExpr(SoapscriptParser.ParenExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code integerConst}
 	 * labeled alternative in {@link SoapscriptParser#number}.
@@ -193,4 +193,10 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMulDivModOp(SoapscriptParser.MulDivModOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#notOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotOp(SoapscriptParser.NotOpContext ctx);
 }

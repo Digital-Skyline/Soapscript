@@ -146,14 +146,14 @@ public class SoapscriptBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParanExpr(SoapscriptParser.ParanExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMulDivExpr(SoapscriptParser.MulDivExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParenExpr(SoapscriptParser.ParenExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -210,4 +210,11 @@ public class SoapscriptBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitMulDivModOp(SoapscriptParser.MulDivModOpContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNotOp(SoapscriptParser.NotOpContext ctx) { return visitChildren(ctx); }
 }

@@ -13,12 +13,14 @@ stmt_list : stmt ( ';' stmt )* ;
 
 stmt  : expr
       | assignment_stmt
+ //     | print_stmt
       | if_stmt
       | for_stmt
       |
       ;
 
 assignment_stmt   : assignment '=' expr ;
+//print_stmt : 'print' '(' ID ')' #printStmt;
 if_stmt           : 'if' '(' expr? ')' loop ('else' loop)?;
 for_stmt          : 'for' '(' for_loop ')' loop ;
 
@@ -32,10 +34,10 @@ expr locals [ TypeSpec type = null ]
       |   expr ('++' | '--')				#incrExpr
       |   expr '.' ID						#dotExpr
       |   ('+'|'-') expr					#posNegExpr
-      |   ('~'|'!') expr					#notExpr
+      |   notOp expr						#notExpr
       |   expr mulDivModOp expr				#mulDivExpr
       |   expr addSubOp expr				#addSubExpr
-      |   '(' expr ')'						#paranExpr
+      |   '(' expr ')'						#parenExpr
       ;
 
 number locals [ TypeSpec type = null ]
@@ -51,6 +53,7 @@ type_id     : ID ;
 conditionalOp : LEOP | GEOP | GTOP | LTOP | ETOP | NEOP;
 addSubOp : ADDOP | SUBOP;
 mulDivModOp : MULOP | DIVOP | MODOP;
+notOp : NOTOP | TNOTOP;
 
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER : [0-9]+ ;
@@ -67,8 +70,9 @@ GTOP : '>';
 LTOP : '<'; 
 NEOP : '!=';
 ETOP : '==';
-
-
+NOTOP : '!';
+TNOTOP : '~';
+//PRINT : 'print';
 
 NEWLINE : '\r'? '\n' -> skip ;
 WS      : [ \t]+ -> skip ;
