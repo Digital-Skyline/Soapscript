@@ -6,7 +6,7 @@ var integer b = 1;
 var integer c = 0;
 
 if (fib == 0) {
-  return a;
+//  return a;
 };
 for (int i = 2; i <= fib; i++) {
   c = a + b;
@@ -14,6 +14,6 @@ for (int i = 2; i <= fib; i++) {
   b = c;
 };
 
-return b;
+//return b;
 
 end

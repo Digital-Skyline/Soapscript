@@ -83,7 +83,7 @@ public class Soap1Visitor extends SoapscriptBaseVisitor<Integer> {
 		TypeSpec type;
 		String   typeIndicator;
 
-		if (typeName.equalsIgnoreCase("int")) {
+		if (typeName.equalsIgnoreCase("integer")) {
 			type = Predefined.integerType;
 			typeIndicator = "I";
 		}

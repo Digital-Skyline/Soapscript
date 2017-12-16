@@ -13,14 +13,14 @@ stmt_list : stmt ( ';' stmt )* ;
 
 stmt  : expr
       | assignment_stmt
- //     | print_stmt
+//      | print_stmt
       | if_stmt
       | for_stmt
       |
       ;
 
 assignment_stmt   : assignment '=' expr ;
-//print_stmt : 'print' '(' ID ')' #printStmt;
+//print_stmt : 'print' '(' ID ')' loop#printStmt;
 if_stmt           : 'if' '(' expr? ')' loop ('else' loop)?;
 for_stmt          : 'for' '(' for_loop ')' loop ;
 
@@ -33,7 +33,7 @@ expr locals [ TypeSpec type = null ]
       |   expr conditionalOp expr			#condExpr
       |   expr ('++' | '--')				#incrExpr
       |   expr '.' ID						#dotExpr
-      |   ('+'|'-') expr					#posNegExpr
+      |   negOp expr						#negExpr
       |   notOp expr						#notExpr
       |   expr mulDivModOp expr				#mulDivExpr
       |   expr addSubOp expr				#addSubExpr
@@ -54,6 +54,7 @@ conditionalOp : LEOP | GEOP | GTOP | LTOP | ETOP | NEOP;
 addSubOp : ADDOP | SUBOP;
 mulDivModOp : MULOP | DIVOP | MODOP;
 notOp : NOTOP | TNOTOP;
+negOp : NEGOP;
 
 ID      : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER : [0-9]+ ;
@@ -73,6 +74,7 @@ ETOP : '==';
 NOTOP : '!';
 TNOTOP : '~';
 //PRINT : 'print';
+NEGOP : '-';
 
 NEWLINE : '\r'? '\n' -> skip ;
 WS      : [ \t]+ -> skip ;

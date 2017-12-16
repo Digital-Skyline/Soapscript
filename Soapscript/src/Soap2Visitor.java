@@ -102,16 +102,16 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
 		if (op.equals("+")) {
 			opcode 	= integerMode ? "iadd"
 					: realMode    ? "fadd"
-					:               "????";
+							:               "????";
 		}
 		else {
 			opcode 	= integerMode ? "isub"
 					: realMode    ? "fsub"
-					:               "????";
+							:               "????";
 		}
 
 		// Emit a multiply or divide instruction.
-		jFile.println("\t" + opcode);
+		//jFile.println("\t" + opcode);
 
 		return value; 
 	}
@@ -134,17 +134,17 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
 		if (op.equals("*")) {
 			opcode 	= integerMode ? "imul"
 					: realMode    ? "fmul"
-					:               "f???";
+							:               "f???";
 		}
 		else if(op.equals("/")){
 			opcode 	= integerMode ? "idiv"
 					: realMode	  ? "fdiv"
-					:               "????";
+							:               "????";
 		}
 		else {
 			opcode 	= integerMode ? "imod"
 					: realMode	  ? "imod"
-					: 				"????";
+							: 				"????";
 		}
 
 		// Emit a multiply or divide instruction.
@@ -175,25 +175,63 @@ public class Soap2Visitor extends SoapscriptBaseVisitor<Integer>{
 		TypeSpec type1 = ctx.expr(0).type;
 		TypeSpec type2 = ctx.expr(1).type;
 
-		boolean integerMode =    (type1 == Predefined.integerType)
-				&& (type2 == Predefined.integerType);
-		boolean realMode    =    (type1 == Predefined.realType)
-				&& (type2 == Predefined.realType);
 		String op = ctx.conditionalOp().getText();
 		String opcode;
-		if (op.equals("+")) {
-			opcode 	= integerMode ? "iadd"
-					: realMode    ? "fadd"
-					:               "????";
+
+		if (op.equals("<=")) {
+			opcode 	= "ble";
+		}
+		else if(op.equals(">=")) {
+			opcode 	= "bge";
+		}
+		else if(op.equals("<")) {
+			opcode 	= "blt";
+		}
+		else if(op.equals(">")) {
+			opcode 	= "bgt";
+		}
+		else if(op.equals("!=")) {
+			opcode 	= "bne";
 		}
 		else {
-			opcode 	= integerMode ? "isub"
-					: realMode    ? "fsub"
-					:               "????";
+			opcode 	= "beq";
 		}
-
+		jFile.println("\t" + opcode);
 		return value; 
 	}
+	@Override 
+	public Integer visitNegExpr(SoapscriptParser.NegExprContext ctx) {
+		Integer value = visit(ctx.expr());         
+        TypeSpec type = ctx.expr().type;
+        
+        if (ctx.negOp().toString() == "-") {
+            String opcode = (type == Predefined.integerType) ? "ineg"
+                          : (type == Predefined.realType)    ? "fneg"
+                          :                                    "?neg";
+            
+            // Emit a negate instruction.
+            jFile.println("\t" + opcode);
+        }
+        
+        return value;
+	}
+	@Override 
+	public Integer visitNotExpr(SoapscriptParser.NotExprContext ctx) {
+		Integer value = visit(ctx.expr());         
+        TypeSpec type = ctx.expr().type;
+        
+        if (ctx.notOp().toString() == "-") {
+            String opcode = (type == Predefined.integerType) ? "ineg"
+                          : (type == Predefined.realType)    ? "fneg"
+                          :                                    "?neg";
+            
+            // Emit a negate instruction.
+            jFile.println("\t" + opcode);
+        }
+        
+        return value;
+	}
+
 
 	@Override
 	public Integer visitIntegerConst(SoapscriptParser.IntegerConstContext ctx)

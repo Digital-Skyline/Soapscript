@@ -81,13 +81,6 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableExpr(SoapscriptParser.VariableExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code posNegExpr}
-	 * labeled alternative in {@link SoapscriptParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPosNegExpr(SoapscriptParser.PosNegExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code dotExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
 	 * @param ctx the parse tree
@@ -108,6 +101,13 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAddSubExpr(SoapscriptParser.AddSubExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code negExpr}
+	 * labeled alternative in {@link SoapscriptParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNegExpr(SoapscriptParser.NegExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link SoapscriptParser#expr}.
@@ -199,4 +199,10 @@ public interface SoapscriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNotOp(SoapscriptParser.NotOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SoapscriptParser#negOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNegOp(SoapscriptParser.NegOpContext ctx);
 }
